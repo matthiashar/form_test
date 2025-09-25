@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Mountain Rescue Incident Report</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/survey-core@1.9.133/defaultV2.min.css"
+    />
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: #f4f6fb;
+      }
+
+      header {
+        padding: 1.5rem 1rem;
+        background: #10316b;
+        color: #ffffff;
+        text-align: center;
+      }
+
+      header h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 2.5vw + 1rem, 2.75rem);
+        letter-spacing: 0.04em;
+      }
+
+      main {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        padding: clamp(1rem, 5vw, 3rem);
+      }
+
+      .survey-wrapper {
+        width: min(960px, 100%);
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 10px 40px rgba(16, 49, 107, 0.18);
+        padding: clamp(1.5rem, 4vw, 2.75rem);
+      }
+
+      footer {
+        text-align: center;
+        padding: 1rem;
+        font-size: 0.9rem;
+        color: rgba(16, 49, 107, 0.7);
+      }
+
+      .survey-title {
+        margin-bottom: 1.5rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Mountain Rescue Incident Report</h1>
+    </header>
+    <main>
+      <div class="survey-wrapper">
+        <div id="surveyContainer"></div>
+      </div>
+    </main>
+    <footer>Powered by SurveyJS • Ready for GitHub Pages deployment</footer>
+
+    <script src="https://unpkg.com/survey-core@1.9.133/survey.core.min.js"></script>
+    <script src="https://unpkg.com/survey-knockout-ui@1.9.133/survey-knockout-ui.min.js"></script>
+    <script>
+      const surveyJson = {
+        title: "Incident Summary",
+        description:
+          "This starter form demonstrates a SurveyJS-based intake for mountain rescue reports.",
+        pages: [
+          {
+            name: "location",
+            title: "Incident Location",
+            elements: [
+              {
+                type: "text",
+                name: "incident_name",
+                title: "Incident name",
+                isRequired: true,
+                placeholder: "E.g. Climbing accident at Alpine Peak",
+              },
+              {
+                type: "panel",
+                name: "coordinates",
+                title: "Coordinates",
+                elements: [
+                  {
+                    type: "text",
+                    name: "latitude",
+                    title: "Latitude",
+                    inputType: "number",
+                    placeholder: "47.123456",
+                  },
+                  {
+                    type: "text",
+                    name: "longitude",
+                    title: "Longitude",
+                    inputType: "number",
+                    placeholder: "11.123456",
+                  },
+                ],
+              },
+              {
+                type: "comment",
+                name: "access_notes",
+                title: "Access notes",
+                description: "Share access challenges or GPS hints.",
+              },
+            ],
+          },
+          {
+            name: "details",
+            title: "Incident Details",
+            elements: [
+              {
+                type: "dropdown",
+                name: "activity",
+                title: "Activity",
+                isRequired: true,
+                choices: [
+                  {
+                    value: "climbing",
+                    text: "Climbing",
+                  },
+                  {
+                    value: "hiking",
+                    text: "Hiking",
+                  },
+                  {
+                    value: "ski_touring",
+                    text: "Ski touring",
+                  },
+                ],
+              },
+              {
+                type: "radiogroup",
+                name: "severity",
+                title: "Severity",
+                isRequired: true,
+                choices: [
+                  { value: "minor", text: "Minor" },
+                  { value: "serious", text: "Serious" },
+                  { value: "critical", text: "Critical" },
+                ],
+              },
+              {
+                type: "matrix",
+                name: "team_roles",
+                title: "Team members on site",
+                columns: [
+                  { value: "yes", text: "Yes" },
+                  { value: "no", text: "No" },
+                ],
+                rows: [
+                  { value: "medic", text: "Medic" },
+                  { value: "rope_specialist", text: "Rope specialist" },
+                  { value: "pilot", text: "Helicopter pilot" },
+                ],
+              },
+            ],
+          },
+        ],
+        showProgressBar: "top",
+        showQuestionNumbers: "off",
+        completeText: "Download report JSON",
+      };
+
+      const survey = new Survey.Model(surveyJson);
+
+      survey.onComplete.add((sender) => {
+        const blob = new Blob([JSON.stringify(sender.data, null, 2)], {
+          type: "application/json",
+        });
+        const downloadLink = document.createElement("a");
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = "incident-report.json";
+        downloadLink.click();
+        URL.revokeObjectURL(downloadLink.href);
+      });
+
+      const appElement = document.getElementById("surveyContainer");
+      SurveyKnockout.render(appElement, { model: survey });
+    </script>
+  </body>
+</html>
