@@ -487,5 +487,10 @@ const json = {
         }
       ]
     }
-  ]
+  ],
+  "showNavigationButtons": false,
+  "showPrevButton": false,
+  "autoAdvanceEnabled": true,
+  "autoAdvanceAllowComplete": false,
+  "questionsOnPageMode": "singlePage"
 }
