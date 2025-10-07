@@ -17,7 +17,7 @@ const json = {
           "type": "dropdown",
           "name": "kategorie",
           "startWithNewLine": false,
-          "title": "Kategorie ",
+          "title": "Kategorie",
           "isRequired": true,
           "choices": [
             {
