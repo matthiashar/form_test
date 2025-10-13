@@ -78,7 +78,6 @@
         {
           "type": "matrixdynamic",
           "name": "fahrzeuge_alarmgruppe",
-          "visibleIf": "{kategorie} anyof ['Item 1', 'Item 2']",
           "title": "Einsatzfahrzeuge",
           "description": "Verwendung der Funkkenner: 1. in Alarmgruppe: alle einzelnen Fahrzeuge, 2. bei Hüttendienst: nur BW „Wache“",
           "isRequired": true,
