@@ -1,4 +1,5 @@
-{
+
+const json = {
   "title": "Einsatzprotokoll",
   "pages": [
     {
