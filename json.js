@@ -1,5 +1,6 @@
+const json = 
 
-const json = {
+{
   "title": "Einsatzprotokoll",
   "pages": [
     {
@@ -64,6 +65,10 @@ const json = {
             {
               "value": "Item 5",
               "text": "Höhlenrettung"
+            },
+            {
+              "value": "Item 6",
+              "text": "Luftretter"
             }
           ]
         },
@@ -219,6 +224,14 @@ const json = {
           "type": "text",
           "name": "Tag",
           "title": "Tag",
+          "isRequired": true,
+          "inputType": "date"
+        },
+        {
+          "type": "text",
+          "name": "question45",
+          "startWithNewLine": false,
+          "title": "2. Tag",
           "isRequired": true,
           "inputType": "date"
         },
@@ -449,13 +462,17 @@ const json = {
                 {
                   "value": "Item 5",
                   "text": "Suizid"
+                },
+                {
+                  "value": "Item 6",
+                  "text": "Stiegen"
                 }
               ],
               "showOtherItem": true,
               "otherText": "Sonstiges"
             },
             {
-              "type": "dropdown",
+              "type": "tagbox",
               "name": "aktivitaet_2",
               "visibleIf": "{aktivitaet_1} = 'Item 1'",
               "titleLocation": "hidden",
@@ -479,6 +496,14 @@ const json = {
                 {
                   "value": "Item 5",
                   "text": "Bouldern"
+                },
+                {
+                  "value": "Item 6",
+                  "text": "Zustieg"
+                },
+                {
+                  "value": "Item 7",
+                  "text": "Abstieg"
                 }
               ]
             }
@@ -512,6 +537,10 @@ const json = {
             {
               "value": "Item 6",
               "text": "Retten aus der Wand"
+            },
+            {
+              "value": "Item 10",
+              "text": "Seilbahn"
             },
             {
               "value": "Item 7",
@@ -655,16 +684,16 @@ const json = {
                   "text": "SAN"
                 },
                 {
-                  "value": "1",
-                  "text": "AW"
+                  "value": 5,
+                  "text": "FR"
                 },
                 {
                   "value": 2,
                   "text": "EK"
                 },
                 {
-                  "value": 5,
-                  "text": "FR"
+                  "value": "1",
+                  "text": "AW"
                 }
               ],
               "storeOthersAsComment": true
@@ -1120,9 +1149,10 @@ const json = {
                   "storeOthersAsComment": true
                 },
                 {
-                  "name": "Column 2",
-                  "title": "Art",
+                  "name": "Column 4",
+                  "title": "Körperteil",
                   "cellType": "dropdown",
+                  "readOnly": true,
                   "choices": [
                     {
                       "value": 1,
@@ -1130,30 +1160,42 @@ const json = {
                     },
                     {
                       "value": 2,
-                      "text": "Fraktur"
+                      "text": "Kopf"
                     },
                     {
                       "value": 3,
-                      "text": "Weichteil-"
+                      "text": "Hals"
                     },
                     {
                       "value": 4,
-                      "text": "Schürfwunde"
+                      "text": "Arme"
                     },
                     {
                       "value": 5,
-                      "text": "oberflächlich"
+                      "text": "Hände"
                     },
                     {
                       "value": 6,
-                      "text": "Sonstiges"
+                      "text": "Oberkörper"
+                    },
+                    {
+                      "value": 7,
+                      "text": "Hüfte"
+                    },
+                    {
+                      "value": 8,
+                      "text": "Beine"
+                    },
+                    {
+                      "value": 9,
+                      "text": "Füße"
                     }
                   ],
                   "storeOthersAsComment": true
                 },
                 {
-                  "name": "Column 3",
-                  "title": "Körperteil",
+                  "name": "Column 2",
+                  "title": "Art",
                   "cellType": "dropdown",
                   "choices": [
                     {
@@ -1162,35 +1204,19 @@ const json = {
                     },
                     {
                       "value": 3,
-                      "text": "Kopf"
+                      "text": "Fraktur"
                     },
                     {
                       "value": 4,
-                      "text": "Hals"
+                      "text": "Weichteil-"
                     },
                     {
                       "value": 5,
-                      "text": "Arm"
+                      "text": "Schürfwunde"
                     },
                     {
                       "value": 6,
-                      "text": "Hände"
-                    },
-                    {
-                      "value": 7,
-                      "text": "Oberkörper"
-                    },
-                    {
-                      "value": 8,
-                      "text": "Hüfte"
-                    },
-                    {
-                      "value": 9,
-                      "text": "Beine"
-                    },
-                    {
-                      "value": 10,
-                      "text": "Füße"
+                      "text": "oberflächlich"
                     }
                   ],
                   "storeOthersAsComment": true
@@ -1244,21 +1270,48 @@ const json = {
           ]
         },
         {
-          "type": "tagbox",
-          "name": "question55",
-          "choices": [
-            "Item 1",
-            "Item 2",
-            "Item 3"
-          ]
-        },
-        {
           "type": "panel",
           "name": "panel2",
           "elements": [
             {
               "type": "tagbox",
               "name": "question44",
+              "title": "Bewusstsein",
+              "choices": [
+                {
+                  "value": "Item 1",
+                  "text": "normal/orientiert"
+                },
+                {
+                  "value": "Item 2",
+                  "text": "getrübt"
+                },
+                {
+                  "value": "Item 3",
+                  "text": "bewusstlos"
+                },
+                {
+                  "value": "Item 7",
+                  "text": "Sonstiges"
+                }
+              ]
+            },
+            {
+              "type": "text",
+              "name": "question29",
+              "startWithNewLine": false,
+              "title": "in Minuten",
+              "inputType": "time"
+            }
+          ]
+        },
+        {
+          "type": "panel",
+          "name": "panel7",
+          "elements": [
+            {
+              "type": "tagbox",
+              "name": "question311",
               "title": "Kreislauf",
               "choices": [
                 {
@@ -1285,7 +1338,7 @@ const json = {
             },
             {
               "type": "text",
-              "name": "question29",
+              "name": "question411",
               "startWithNewLine": false,
               "title": "in Minuten",
               "inputType": "time"
