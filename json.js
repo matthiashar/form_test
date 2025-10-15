@@ -1,6 +1,4 @@
-const json = 
-
-{
+const json = {
   "title": "Einsatzprotokoll",
   "pages": [
     {
@@ -340,16 +338,7 @@ const json =
         },
         {
           "type": "text",
-          "name": "question9",
-          "title": "Koordinaten",
-          "description": "Einsatzort (WGS84): 50.9626367N, 14.0803099E (mit 7-Nachkommestellen)",
-          "isRequired": true,
-          "inputType": "number"
-        },
-        {
-          "type": "text",
           "name": "question10",
-          "startWithNewLine": false,
           "title": "Gipfel/Kletterweg"
         },
         {
@@ -383,6 +372,39 @@ const json =
               "text": "Wehlen/ Rathen/ Brand"
             }
           ]
+        },
+        {
+          "type": "panel",
+          "name": "Koordinaten",
+          "title": "Koordinaten",
+          "elements": [
+			{
+			  type: "text",
+			  name: "lat",
+			  title: "Breite (Lat)",
+			  inputType: "number",
+			  placeholder: "z. B. 51.0504",
+			  validators: [{ type: "numeric" }]
+			},
+			{
+			  type: "text",
+			  name: "lng",
+			  title: "Länge (Lng)",
+			  inputType: "number",
+			  placeholder: "z. B. 13.7373",
+			  validators: [{ type: "numeric" }]
+			},
+			{
+			  type: "html",
+			  name: "pick_on_map",
+			  html: `<button type="button" id="openMapPicker" style="padding:10px 14px; border:1px solid #0d6efd; border-radius:8px; background:#0d6efd; color:#fff;">
+					   Punkt auf Karte wählen
+					 </button>
+					 <div style="font-size:12px; color:#666; margin-top:6px;">
+					   Tippe/Click auf den Button, setze einen Marker und bestätige.
+					 </div>`
+			}
+		  ]
         }
       ]
     },
